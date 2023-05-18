@@ -1,6 +1,7 @@
 import React from 'react'
 import noteContext from '../context/notes/noteContext';
 import { useContext, useState } from 'react';
+import Typewriter from "typewriter-effect";
 export const AddNote = (props) => {
     const context = useContext(noteContext);
     const { addNote } = context;
@@ -9,8 +10,8 @@ export const AddNote = (props) => {
         e.preventDefault();
 
         addNote(note.title, note.description, note.tag);
-        props.showAlert("Congrats!! Note Added Successfully","success")
-    
+        props.showAlert("Congrats!! Note Added Successfully", "success")
+
     }
     const onChange = (e) => {
         // setNote({...note, [e.target.name]: e.target.value})
@@ -20,7 +21,26 @@ export const AddNote = (props) => {
     }
     return (
         <div><div className='container my-4'>
-            <h3 className="fw-bold" style={{ color: "#565656" }}>ADD YOUR NOTE</h3>
+            <h3 className="fw-bold" style={{ color: "#565656" }}>
+                <Typewriter
+
+                    onInit={(typewriter) => {
+
+                        typewriter
+
+                            .typeString("Add Your Thoughts")
+
+                            .pauseFor(1000)
+                            .deleteAll()
+                            .typeString("We won't judge you :)")
+                            .pauseFor(1000)
+                            .deleteAll()
+                            .typeString("Add your Thoughts")
+                            .start();
+                            
+                    }}
+                />
+            </h3>
             <form className='container my-4'>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
